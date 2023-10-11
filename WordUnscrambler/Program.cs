@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 
 namespace WordUnscrambler
 {
@@ -13,37 +15,47 @@ namespace WordUnscrambler
         {
             try
             {
+                Console.WriteLine(Properties.Strings.LanguageInputPrompt);
+                string langSelect = Console.ReadLine();
+                while(langSelect.Trim() != "1" && langSelect.Trim() != "2")
+                {
+                    Console.WriteLine(Properties.Strings.LanguageInputPrompt);
+                    langSelect = Console.ReadLine();
+                }
+                if(langSelect.Trim() == "2") {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-CA");
+                }
                 bool continueWordUnscrambling = true;
 
                 while (continueWordUnscrambling)
                 {
-                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
-                    String option = Console.ReadLine() ?? throw new Exception("String is empty");
+                    Console.WriteLine(Properties.Strings.InitInputPrompt);
+                    String option = Console.ReadLine() ?? throw new Exception(Properties.Strings.NullString);
 
                     while (option.ToUpper() != "F" && option.ToUpper() != "M")
                     {
-                        Console.WriteLine("The entered option was not recognized. Please enter F for file or M for manual entry.");
-                        option = Console.ReadLine() ?? throw new Exception("String is empty");
+                        Console.WriteLine(Properties.Strings.UnrecognizedInputPrompt);
+                        option = Console.ReadLine() ?? throw new Exception(Properties.Strings.NullString);
                     }
 
                     switch (option.ToUpper())
                     {
                         case "F":
-                            Console.WriteLine("Enter full path including the file name: ");
+                            Console.WriteLine(Properties.Strings.PathInputPrompt);
                             ExecuteScrambledWordsInFileScenario();
                             break;
                         case "M":
-                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
+                            Console.WriteLine(Properties.Strings.ManualInputPrompt);
                             ExecuteScrambledWordsManualEntryScenario();
                             break;
                     }
 
-                    Console.WriteLine("Would you like to continue? Y/N");
+                    Console.WriteLine(Properties.Strings.ContinuteInputPrompt);
                     string continueOption = Console.ReadLine();
 
                     while (continueOption.ToUpper() != "Y" && continueOption.ToUpper() != "N")
                     {
-                        Console.WriteLine("Invalid input. Please enter Y to continue or N to exit.");
+                        Console.WriteLine(Properties.Strings.InvalidInputPrompt);
                         continueOption = Console.ReadLine();
                     }
 
@@ -55,7 +67,7 @@ namespace WordUnscrambler
             }
             catch (Exception ex)
             {
-                Console.WriteLine("The program will be terminated." + ex.Message);
+                Console.WriteLine(Properties.Strings.Terminate + ex.Message);
             }
         }
 
@@ -64,7 +76,8 @@ namespace WordUnscrambler
             string filename = Console.ReadLine();
             while(_fileReader.Exists(filename) == false)
             {
-                Console.WriteLine("File does not exist..\nEnter full path including the file name: ");
+                Console.WriteLine(Properties.Strings.InvalidFilePathInputPrompt);
+                Console.WriteLine(Properties.Strings.PathInputPrompt);
                 filename = Console.ReadLine();
             }
             string[] scrambledWords = _fileReader.Read(filename);
@@ -91,7 +104,10 @@ namespace WordUnscrambler
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
             matchedWords.ForEach(word =>
             {
-                Console.WriteLine("Found match " + word.ScrambledWord + " with " + word.Word);
+                Console.Write(Properties.Strings.FoundMatch);
+                Console.Write(word.ScrambledWord);
+                Console.Write(Properties.Strings.FoundMatchWith);
+                Console.WriteLine(word.Word);
             });
         }
     }
