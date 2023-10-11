@@ -49,7 +49,12 @@ namespace WordUnscrambler
 
         private static void ExecuteScrambledWordsInFileScenario()
         {
-            var filename = Console.ReadLine();
+            string filename = Console.ReadLine();
+            while(_fileReader.Exists(filename) != null)
+            {
+                Console.WriteLine("File does not exist..\nEnter full path including the file name: ");
+                filename = Console.ReadLine();
+            }
             string[] scrambledWords = _fileReader.Read(filename);
             DisplayMatchedUnscrambledWords(scrambledWords);
         }
