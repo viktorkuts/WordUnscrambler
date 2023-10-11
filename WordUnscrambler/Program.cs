@@ -50,7 +50,7 @@ namespace WordUnscrambler
         private static void ExecuteScrambledWordsInFileScenario()
         {
             string filename = Console.ReadLine();
-            while(_fileReader.Exists(filename) != null)
+            while(_fileReader.Exists(filename) == false)
             {
                 Console.WriteLine("File does not exist..\nEnter full path including the file name: ");
                 filename = Console.ReadLine();
@@ -70,6 +70,10 @@ namespace WordUnscrambler
 
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
+            matchedWords.ForEach(word =>
+            {
+                Console.WriteLine("Found match " + word.ScrambledWord + " with " + word.Word);
+            });
         }
     }
 }
