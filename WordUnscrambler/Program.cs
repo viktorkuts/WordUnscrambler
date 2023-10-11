@@ -13,33 +13,49 @@ namespace WordUnscrambler
         {
             try
             {
-                Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                bool continueWordUnscrambling = true;
 
-                String option = Console.ReadLine() ?? throw new Exception("String is empty");
-
-                switch (option.ToUpper())
+                while (continueWordUnscrambling)
                 {
-                    case "F":
-                        Console.WriteLine("Enter full path including the file name: ");
-                        ExecuteScrambledWordsInFileScenario();
-                        break;
-                    case "M":
-                        Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
-                        ExecuteScrambledWordsManualEntryScenario();
-                        break;
-                    default:
-                        Console.WriteLine("The entered option was not recognized.");
-                        break;
+                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                    String option = Console.ReadLine() ?? throw new Exception("String is empty");
+
+                    while (option.ToUpper() != "F" && option.ToUpper() != "M")
+                    {
+                        Console.WriteLine("The entered option was not recognized. Please enter F for file or M for manual entry.");
+                        option = Console.ReadLine() ?? throw new Exception("String is empty");
+                    }
+
+                    switch (option.ToUpper())
+                    {
+                        case "F":
+                            Console.WriteLine("Enter full path including the file name: ");
+                            ExecuteScrambledWordsInFileScenario();
+                            break;
+                        case "M":
+                            Console.WriteLine("Enter word(s) manually (separated by commas if multiple): ");
+                            ExecuteScrambledWordsManualEntryScenario();
+                            break;
+                    }
+
+                    Console.WriteLine("Would you like to continue? Y/N");
+                    string continueOption = Console.ReadLine();
+
+                    while (continueOption.ToUpper() != "Y" && continueOption.ToUpper() != "N")
+                    {
+                        Console.WriteLine("Invalid input. Please enter Y to continue or N to exit.");
+                        continueOption = Console.ReadLine();
+                    }
+
+                    if (continueOption.ToUpper() == "N")
+                    {
+                        continueWordUnscrambling = false;
+                    }
                 }
-
-                Console.ReadLine();
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("The program will be terminated." + ex.Message);
-
             }
         }
 
