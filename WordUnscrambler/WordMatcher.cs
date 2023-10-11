@@ -13,12 +13,12 @@ namespace WordUnscrambler
             foreach (var scrambledWord in scrambledWords)
             {
                 // Convert the scrambled word to a sorted character array.
-                var scrambledWordSorted = String.Concat(scrambledWord.OrderBy(c => c));
+                var scrambledWordSorted = String.Concat(scrambledWord.ToLower().OrderBy(c => c));
 
                 foreach (var word in wordList)
                 {
                     // Convert the word to a sorted character array.
-                    var wordSorted = String.Concat(word.OrderBy(c => c));
+                    var wordSorted = String.Concat(word.ToLower().OrderBy(c => c));
 
                     if (scrambledWordSorted.Equals(wordSorted))
                     {
