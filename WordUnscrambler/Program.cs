@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Globalization;
 
 namespace WordUnscrambler
 {
@@ -56,6 +52,13 @@ namespace WordUnscrambler
 
         private static void ExecuteScrambledWordsManualEntryScenario()
         {
+            // Read user input.
+            string input = Console.ReadLine();
+
+            // Split words based on commas. The trim method makes sure there's no spaces around the entered words.
+            string[] scrambledWords = input.Split(',').Select(word => word.Trim()).ToArray();
+
+            DisplayMatchedUnscrambledWords(scrambledWords);
         }
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
