@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ContinuteInputPrompt" xml:space="preserve">
+  <data name="ContinueInputPrompt" xml:space="preserve">
     <value>Would you like to continue? Y/N</value>
   </data>
   <data name="FoundMatch" xml:space="preserve">
@@ -125,7 +125,6 @@
   </data>
   <data name="FoundMatchWith" xml:space="preserve">
     <value> with word </value>
-    <comment> </comment>
   </data>
   <data name="InitInputPrompt" xml:space="preserve">
     <value>Enter scrambled word(s) manually or as a file: F - file / M - manual</value>

@@ -63,9 +63,9 @@ namespace WordUnscrambler.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Would you like to continue? Y/N.
         /// </summary>
-        internal static string ContinuteInputPrompt {
+        internal static string ContinueInputPrompt {
             get {
-                return ResourceManager.GetString("ContinuteInputPrompt", resourceCulture);
+                return ResourceManager.GetString("ContinueInputPrompt", resourceCulture);
             }
         }
         

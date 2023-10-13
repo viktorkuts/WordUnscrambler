@@ -52,7 +52,7 @@ namespace WordUnscrambler
                             break;
                     }
 
-                    Console.WriteLine(Properties.Strings.ContinuteInputPrompt);
+                    Console.WriteLine(Properties.Strings.ContinueInputPrompt);
                     string continueOption = Console.ReadLine();
 
                     while (continueOption.ToUpper() != "Y" && continueOption.ToUpper() != "N")
