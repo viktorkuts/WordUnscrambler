@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 
+// By Maximilian Coreachin and Viktor Kuts
+
 namespace WordUnscrambler
 {
     class Program

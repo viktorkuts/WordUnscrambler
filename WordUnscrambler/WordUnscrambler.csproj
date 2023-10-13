@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Util.cs" />
     <Compile Include="Properties\Strings.fr-CA.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
